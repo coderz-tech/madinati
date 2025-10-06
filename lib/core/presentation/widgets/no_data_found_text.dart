@@ -15,7 +15,8 @@ class NoDataFoundText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      context.read<LocaleCubit>().getLabelById(id: 30),
+      /// todo text
+      "context.read<LocaleCubit>().getLabelById(id: 30)",
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Color(0xFF7E7F83),

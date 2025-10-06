@@ -98,8 +98,9 @@ class CustomMultiDropdown<T extends Object> extends StatelessWidget {
                 hintText: hintText,
               ),
               items: items,
+              /// todo text
               searchDecoration: SearchFieldDecoration(
-                hintText: context.read<LocaleCubit>().getLabelById(id:1003),
+                hintText: "context.read<LocaleCubit>().getLabelById(id:1003)",
                 searchIcon: Icon(
                   Icons.search,
                   color: Theme.of(context).colorScheme.secondaryContainer,

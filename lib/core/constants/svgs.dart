@@ -1,4 +1,7 @@
 class Svgs {
+  static String dots_1 = "assets/images/svgs/dots1.svg";
+  static String dots_2 = "assets/images/svgs/dots2.svg";
+  static String dots_3 = "assets/images/svgs/dots3.svg";
   static String add = "assets/images/svgs/add.svg";
   static String addCircle = "assets/images/svgs/add_circle.svg";
   static String arrowCircleDown = "assets/images/svgs/arrow_circle_down.svg";

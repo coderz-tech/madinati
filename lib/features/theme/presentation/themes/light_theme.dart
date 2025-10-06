@@ -29,13 +29,13 @@ final ThemeData lightTheme = ThemeData(
     // ############Black Text#####################
     headlineLarge: TextStyle(
       color: AppColors.blackText,
-      fontSize: 25.sp,
+      fontSize: 24.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     headlineMedium: TextStyle(
       color: AppColors.blackText,
-      fontSize: 20.sp,
+      fontSize: 16.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),

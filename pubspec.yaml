@@ -54,10 +54,11 @@ flutter_launcher_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.1
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
+  generate: true
 
   uses-material-design: true
 

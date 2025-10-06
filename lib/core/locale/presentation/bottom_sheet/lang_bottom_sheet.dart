@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../../constants/pngs.dart';
-import '../../../constants/svgs.dart';
-import '../../../presentation/widgets/custom_button.dart';
-import '../../../utils/responsive.dart';
+import 'package:madinati/l10n/app_localizations.dart';
+
+import '../../../../core/presentation/widgets/gradient_button.dart';
+import '../../../../core/presentation/widgets/radio_button_with_text.dart';
+import '../../../presentation/states/general_state.dart';
+import '../../../presentation/widgets/loading_spinkit.dart';
+import '../../domain/entities/local_model.dart';
 import '../cubit/locale_cubit.dart';
-import '../state/locale_state.dart';
 
 class LangBottomSheet extends StatelessWidget {
-  const LangBottomSheet({super.key});
+  final double screenWidth;
+  final double screenHeight;
+
+  const LangBottomSheet({
+    super.key,
+    required this.screenWidth,
+    required this.screenHeight,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    context.read<LocaleCubit>().loadSavedLocale();
-    final theme = Theme.of(context);
+  Widget build(BuildContext context1) {
+    Size size = MediaQuery.of(context1).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 24)),
-      width: responsiveWidth(context, 430),
-      height: responsiveHeight(context, 500),
+      padding: EdgeInsets.fromLTRB(
+        size.width * 0.05581395348,
+        size.height * 0.05206073752,
+        size.width * 0.05581395348,
+        size.height * 0.05206073752,
+      ),
+      width: screenWidth,
       decoration: ShapeDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context1).colorScheme.background,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
@@ -29,166 +39,76 @@ class LangBottomSheet extends StatelessWidget {
           ),
         ),
       ),
-      child: BlocBuilder<LocaleCubit, LocaleState>(
-        builder: (context, state) {
-
+      child: BlocBuilder<LocaleCubit, List<LocalModel>?>(
+        builder: (context, localModel) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: responsiveHeight(context, 48)),
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  start: responsiveWidth(context, 24),
-                ),
-                child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    context.read<LocaleCubit>().getLabelById(id: 1000),
-                    // Use key for localization
-                    style: theme.textTheme.headlineMedium!.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18.sp,
-                    ),
-                  ),
-                ),
+              Text(
+                AppLocalizations.of(context)!.select_language,
+                style: Theme.of(context).appBarTheme.titleTextStyle,
               ),
-              SizedBox(height: responsiveHeight(context, 27)),
-              LanguageOption(
-                onTap: () {
-                  context.read<LocaleCubit>().changeSelected(selectedIndex: 1);
-                },
-                isSelected: state.listLocal[1].isSelected,
-                name: state.listLocal[1].name,
-                picture: Pngs.ksa,
-              ),
-              SizedBox(height: responsiveHeight(context, 15)),
-              LanguageOption(
-                picture: Pngs.uk,
+              SizedBox(height: size.height * 0.02603036876),
+              RadioButtonWidget(
                 onTap: () {
                   context.read<LocaleCubit>().changeSelected(selectedIndex: 0);
                 },
-                isSelected: state.listLocal[0].isSelected,
-                name: state.listLocal[0].name,
+                isSelected: localModel![0].isSelected,
+                name: localModel[0].name,
               ),
-              SizedBox(height: responsiveHeight(context, 15)),
-              LanguageOption(
-                picture: Pngs.urdu,
+              SizedBox(height: size.height * 0.01301518438),
+              RadioButtonWidget(
+                onTap: () {
+                  context.read<LocaleCubit>().changeSelected(selectedIndex: 1);
+                },
+                isSelected: localModel[1].isSelected,
+                name: localModel[1].name,
+              ),
+              SizedBox(height: size.height * 0.01301518438),
+              RadioButtonWidget(
                 onTap: () {
                   context.read<LocaleCubit>().changeSelected(selectedIndex: 2);
                 },
-                isSelected: state.listLocal[2].isSelected,
-                name: state.listLocal[2].name,
+                isSelected: localModel[2].isSelected,
+                name: localModel[2].name,
               ),
-              SizedBox(height: responsiveHeight(context, 15)),
-              LanguageOption(
-                picture: Pngs.hind,
+              SizedBox(height: size.height * 0.01301518438),
+              RadioButtonWidget(
                 onTap: () {
                   context.read<LocaleCubit>().changeSelected(selectedIndex: 3);
                 },
-                isSelected: state.listLocal[3].isSelected,
-                name: state.listLocal[3].name,
+                isSelected: localModel[3].isSelected,
+                name: localModel[3].name,
               ),
-              SizedBox(height: responsiveHeight(context, 28)),
-              CustomButton(
-                label: context.read<LocaleCubit>().getLabelById(id: 1001),
-                onTap: () {
-                  context.read<LocaleCubit>().saveLocale().then((value) {
-                    Navigator.pop(context);
-                  });
-                },
-                // buttonHeights: screenHeight * 0.06451612903,
-                // buttonWidth: screenWidth,
-              ),
-              SizedBox(height: responsiveHeight(context, 30)),
+              SizedBox(height: size.height * 0.02603036876),
+              // BlocBuilder<AuthCubit, GeneralState>(
+              //   builder: (context, state) {
+              //     if (state is LoadingState) {
+              //       return Container(
+              //         alignment: Alignment.center,
+              //         height: screenHeight * 0.06451612903,
+              //         width: screenWidth,
+              //         child: const LoadingSpinKit(),
+              //       );
+              //     } else {
+              //       return IntrinsicHeight(
+              //         child: GradientButton(
+              //           text: AppLocalizations.of(context)!.confirm,
+              //           onTap: () {
+              //             context.read<LocaleCubit>().saveLocale();
+              //
+              //           },
+              //           height: screenHeight * 0.06451612903,
+              //           width: screenWidth,
+              //         ),
+              //       );
+              //     }
+              //   },
+              // )
             ],
           );
         },
-      ),
-    );
-  }
-}
-
-class LanguageOption extends StatelessWidget {
-  final String name;
-  final String picture;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const LanguageOption({
-    super.key,
-    required this.name,
-    required this.isSelected,
-    required this.onTap,
-    required this.picture,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: responsiveWidth(context, 382),
-        height: responsiveHeight(context, 52),
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              width: 1,
-              color:
-                  isSelected
-                      ? theme.colorScheme.primary
-                      : theme.colorScheme.outline,
-            ),
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                start: responsiveWidth(context, 20),
-              ),
-              child: Container(
-                width: responsiveWidth(context, 25),
-                height: responsiveHeight(context, 25),
-                decoration: BoxDecoration(shape: BoxShape.circle),
-                child: Image.asset(
-                  picture,
-                  width: responsiveWidth(context, 24),
-                  height: responsiveHeight(context, 24),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: responsiveWidth(context, 16),
-              ),
-              child: Text(
-                name,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall!.copyWith(fontSize: 12.sp),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                end: responsiveWidth(context, 10),
-              ),
-              child:
-                  isSelected
-                      ? SvgPicture.asset(
-                        Svgs.tick,
-                        width: responsiveWidth(context, 42),
-                        height: responsiveHeight(context, 42),
-                        fit: BoxFit.contain,
-                      )
-                      : SizedBox(),
-            ),
-          ],
-        ),
       ),
     );
   }
