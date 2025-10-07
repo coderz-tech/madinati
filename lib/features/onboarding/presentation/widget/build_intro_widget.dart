@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:madinati/features/auth/presentation/view/login_screen.dart';
 
 import '../../../../core/constants/pngs.dart';
 import '../../../../core/constants/svgs.dart';
@@ -67,7 +68,7 @@ class _BuildIntroWidgetState extends State<BuildIntroWidget> {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            const Text("data"), // Replace with the desired screen
+            const LoginScreen(), // Replace with the desired screen
       ),
     );
   }

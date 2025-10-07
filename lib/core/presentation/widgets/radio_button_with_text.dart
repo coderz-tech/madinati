@@ -26,7 +26,7 @@ class RadioButtonWidget extends StatelessWidget {
           right: 16,
         ),
         decoration: ShapeDecoration(
-          color: Theme.of(context).colorScheme.surfaceTint,
+          // color: Theme.of(context).colorScheme.surfaceTint,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: isSelected ? 3 : 1,

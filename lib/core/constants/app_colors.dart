@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColors {
   static const Color primary = Color(0xFF00AAB8);
   static const Color darkPrimary = Color(0xFF7399C6);
@@ -11,10 +13,15 @@ class AppColors {
   static const Color onPrimaryContainer = Color(0xFF57A2A7);
   static const Color primaryContainer = Color(0xFFFFFFFF);
   static const Color orange = Color(0xFFF8971D);
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [Color(0xFF57A2A7), Color(0xFF88B388)], // blue to purple
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 
   static const Color blackText = Color(0xFF414141);
   static const Color whiteText = Color(0xFFFFFFFF);
-  static const Color greyText = Color(0xFF666666);
+  static const Color greyText = Color(0xFF7E7F83);
   static const Color iconBlack = Color(0xFF414141);
   static const Color secondaryContainer = Color(0xFF97A1B0);
   static const Color onSecondaryContainer = Color(0xFF111111);

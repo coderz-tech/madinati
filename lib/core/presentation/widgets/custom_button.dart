@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:madinati/core/constants/app_colors.dart';
 import '../../utils/responsive.dart';
 
 class CustomButton extends StatelessWidget {
@@ -39,9 +40,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final TextStyle defaultStyle = TextStyle(
-      fontSize: 14.sp,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w700,
       color: labelColor ?? theme.colorScheme.onPrimary,
     );
 
@@ -56,12 +57,13 @@ class CustomButton extends StatelessWidget {
         width: buttonWidth ?? MediaQuery.of(context).size.width,
         // height: buttonHeights ?? responsiveHeight(context, 50),
         decoration: BoxDecoration(
-          color: color ?? Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(borderRadius ?? 16),
-          border: Border.all(
-            color: borderColor ?? theme.colorScheme.primary,
-            width: borderWidth ?? 1.5,
-          ),
+          gradient: AppColors.primaryGradient ,
+          color: color ?? AppColors.primary,
+          borderRadius: BorderRadius.circular(borderRadius ?? 12),
+          // border: Border.all(
+            // color: borderColor ?? theme.colorScheme.primary,
+            // width: borderWidth ?? 1.5,
+          // ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

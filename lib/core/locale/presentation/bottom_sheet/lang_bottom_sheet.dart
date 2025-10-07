@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:madinati/core/presentation/widgets/custom_button.dart';
 import 'package:madinati/l10n/app_localizations.dart';
 
 import '../../../../core/presentation/widgets/gradient_button.dart';
@@ -82,6 +83,7 @@ class LangBottomSheet extends StatelessWidget {
                 name: localModel[3].name,
               ),
               SizedBox(height: size.height * 0.02603036876),
+              CustomButton(label: "تأكيد", onTap: (){})
               // BlocBuilder<AuthCubit, GeneralState>(
               //   builder: (context, state) {
               //     if (state is LoadingState) {

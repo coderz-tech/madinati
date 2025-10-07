@@ -89,8 +89,16 @@ class IntroWidget extends StatelessWidget {
                     label: isLastPage ? "ok" : "next",
                     onTap: isLastPage ? onOk : onNext,
                   ),
-                  SizedBox(height: responsiveHeight(context, 45)),
-                  TextButton(onPressed: () {}, child: Text("skip",style: Theme.of(context).textTheme.bodyMedium,)),
+                  SizedBox(height: responsiveHeight(context, 28)),
+                  skip?
+                    TextButton(
+                    onPressed: skip ? onSkip : null, // disables when skip == false
+                    child: Text(
+                      "skip",
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                  ): SizedBox(height: responsiveHeight(context, 50),),
+                  SizedBox(height: responsiveHeight(context, 40)),
                 ],
               ),
             ),

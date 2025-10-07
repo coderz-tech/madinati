@@ -45,21 +45,21 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
-    // ############Orange Text#####################
+    // ############green Text#####################
     displayLarge: TextStyle(
-      color: AppColors.orange,
-      fontSize: 25.sp,
+      color: AppColors.onPrimaryContainer,
+      fontSize: 24.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     displayMedium: TextStyle(
-      color: AppColors.orange,
-      fontSize: 20.sp,
+      color: AppColors.onPrimaryContainer,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     displaySmall: TextStyle(
-      color: AppColors.orange,
+      color: AppColors.onPrimaryContainer,
       fontSize: 14.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
@@ -67,13 +67,13 @@ final ThemeData lightTheme = ThemeData(
     // ############white Text#####################
     titleLarge: TextStyle(
       color: AppColors.whiteText,
-      fontSize: 25.sp,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     titleMedium: TextStyle(
       color: AppColors.whiteText,
-      fontSize: 20.sp,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
