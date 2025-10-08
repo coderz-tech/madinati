@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RadioButtonWidget extends StatelessWidget {
   bool isSelected;
@@ -21,17 +22,14 @@ class RadioButtonWidget extends StatelessWidget {
       child: Container(
         width: size.width,
         height: size.height * 0.0601,
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 16,
-        ),
+        padding: const EdgeInsets.only(left: 20, right: 16),
         decoration: ShapeDecoration(
           // color: Theme.of(context).colorScheme.surfaceTint,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: isSelected ? 3 : 1,
               color: isSelected
-                  ? Theme.of(context).colorScheme.secondary
+                  ? Theme.of(context).colorScheme.primary
                   : const Color(0xFF80808D),
             ),
             borderRadius: BorderRadius.circular(12),
@@ -45,7 +43,9 @@ class RadioButtonWidget extends StatelessWidget {
             Text(
               name,
               textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                fontSize: 16.sp
+              ),
             ),
             const Spacer(),
             Container(
@@ -53,7 +53,7 @@ class RadioButtonWidget extends StatelessWidget {
               height: 20,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Theme.of(context).colorScheme.primary,
                   width: isSelected ? 7.5 : 1,
                 ),
                 borderRadius: BorderRadius.circular(500),

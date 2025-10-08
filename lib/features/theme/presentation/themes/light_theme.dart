@@ -125,6 +125,7 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme(
     brightness: Brightness.light,
     inversePrimary: AppColors.inversePrimary,
+    onPrimaryFixed: AppColors.onPrimaryFixed,
     primary: AppColors.primary,
     onPrimary: AppColors.onPrimary,
     secondary: AppColors.secondary,

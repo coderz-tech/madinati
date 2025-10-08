@@ -7,7 +7,10 @@ import 'core/locale/domain/entities/local_model.dart';
 import 'core/locale/domain/repositories/locale_repository.dart';
 import 'core/locale/presentation/cubit/locale_cubit.dart';
 import 'core/utils/location_permission.dart';
+import 'features/home/presentation/cubits/nav_bar_cubit.dart';
+import 'features/home/presentation/screens/home_screen.dart';
 import 'features/splash/presentation/splash_screen.dart';
+import 'features/tabs/presentation/cubits/tabs_cubit.dart';
 import 'features/theme/data/datasources/theme_local_data_source.dart';
 import 'features/theme/data/repositories/theme_repository_impl.dart';
 import 'features/theme/domain/repositories/theme_repository.dart';
@@ -43,6 +46,10 @@ class _MyAppState extends State<MyApp> {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider<NavBarCubit>(
+          create: (context) => NavBarCubit(),
+          child: HomeScreen(),
+        ),
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(
             getIsDarkTheme: GetIsDarkTheme(repository: themeRepository),
@@ -52,6 +59,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<LocaleCubit>(
           create: (context) => LocaleCubit(localeRepository: localeRepository),
         ),
+        BlocProvider<TabsCubit>(create: (_) => TabsCubit()),
+
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {

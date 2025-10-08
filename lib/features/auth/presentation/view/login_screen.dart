@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:madinati/core/constants/pngs.dart';
@@ -6,8 +7,13 @@ import 'package:madinati/core/constants/svgs.dart';
 import 'package:madinati/core/locale/presentation/bottom_sheet/lang_bottom_sheet.dart';
 import 'package:madinati/core/presentation/widgets/custom_button.dart';
 import 'package:madinati/core/utils/responsive.dart';
-
+import 'package:madinati/features/home/presentation/screens/home_screen.dart';
+import 'package:madinati/features/trips/presentation/driver/current_trip/view/current_trip.dart';
+import 'package:madinati/features/trips/presentation/driver/upcoming_trip/view/upcoming_trip_screen.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../operation_plans/presentation/driver/operation_plans/view/operation_plans_screen.dart';
+import '../../../tabs/presentation/cubits/tabs_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -44,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "العربية",
+                        AppLocalizations.of(context)!.lang_name,
                         style: Theme.of(
                           context,
                         ).textTheme.headlineLarge?.copyWith(fontSize: 18.sp),
@@ -84,7 +90,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: responsiveHeight(context, 29)),
               Text(
-                "تسجيل الدخول",
+                AppLocalizations.of(context)!.login,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               SizedBox(height: responsiveHeight(context, 29)),
@@ -95,13 +101,38 @@ class LoginScreen extends StatelessWidget {
                 textDirection: TextDirection.rtl,
               ),
               SizedBox(height: responsiveHeight(context, 81)),
-              CustomButton(label: "الدخول مع رقم الهوية/الإقامة", onTap: () {}),
+              CustomButton(
+                label: "الدخول مع رقم الهوية/الإقامة",
+                onTap: () {
+                  List<Widget> screens = [
+                    const CurrentTrip(),
+                    const UpcomingTripScreen(),
+                    const OperationPlansScreen(),
+                  ];
+                  List<String> titles = [
+                    AppLocalizations.of(context)!.current_trip,
+                    AppLocalizations.of(context)!.next_trip,
+                    AppLocalizations.of(context)!.operational_plans,
+                  ];
+                  context.read<TabsCubit>().initial(
+                    screens: screens,
+                    titles: titles,
+                  );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+              ),
               SizedBox(height: responsiveHeight(context, 40)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Divider(thickness: 1, color: AppColors.greyText),
-                  Text("أو", style: Theme.of(context).textTheme.labelMedium),
+                  Text(
+                    AppLocalizations.of(context)!.or,
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
                   Divider(thickness: 1),
                 ],
               ),

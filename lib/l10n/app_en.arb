@@ -54,7 +54,7 @@
   "vehicle": "Vehicle",
   "tracking_company": "Tracking company",
   "type_of_waste": "Type of waste",
-  "flight_time": "Flight time",
+  "flight_time": "trip time",
   "starting_point": "Starting point",
   "disposal_point": "Disposal point",
   "starting_location": "Starting location",

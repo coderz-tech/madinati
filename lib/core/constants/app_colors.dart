@@ -7,6 +7,7 @@ class AppColors {
   static const Color darkPrimary = Color(0xFF7399C6);
   static const Color onPrimary = Color(0xFFFFFFFF);
   static const Color inversePrimary = Color(0x7573A8AE);
+  static const Color onPrimaryFixed = Color(0x30DAE0E7);
   static const Color secondary = Color(0xFF7399C6);
   static const Color secondaryDark = Color(0xFF060C1D);
   static const Color onSecondary = Color(0xFFFFFFFF);

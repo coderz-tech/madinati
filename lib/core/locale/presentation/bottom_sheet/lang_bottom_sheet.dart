@@ -48,7 +48,7 @@ class LangBottomSheet extends StatelessWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.select_language,
-                style: Theme.of(context).appBarTheme.titleTextStyle,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               SizedBox(height: size.height * 0.02603036876),
               RadioButtonWidget(

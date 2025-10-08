@@ -96,6 +96,7 @@ class Svgs {
   static String filter = "assets/images/svgs/filter.svg";
   static String time = "assets/images/svgs/time.svg";
   static String calendar = "assets/images/svgs/calendar.svg";
+  static String calendar2 = "assets/images/svgs/calendar2.svg";
   static String navigation = "assets/images/svgs/navigation.svg";
   static String pinPoint = "assets/images/svgs/pinPoint.svg";
   static String arrow_down_circle = "assets/images/svgs/arrow_down_circle.svg";
