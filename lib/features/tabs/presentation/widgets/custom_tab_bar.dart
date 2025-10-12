@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/responsive.dart';
 
 class CustomTabBar extends StatelessWidget {

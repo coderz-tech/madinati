@@ -60,7 +60,6 @@ class _MyAppState extends State<MyApp> {
           create: (context) => LocaleCubit(localeRepository: localeRepository),
         ),
         BlocProvider<TabsCubit>(create: (_) => TabsCubit()),
-
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {

@@ -77,6 +77,7 @@ class Svgs {
       "assets/images/svgs/unselected_security_user.svg";
   static String vehicle = "assets/images/svgs/vehicle.svg";
   static String vehicle2 = "assets/images/svgs/vehicle_2.svg";
+  static String vehicle3 = "assets/images/svgs/vehicle_3.svg";
   static String warning = "assets/images/svgs/warning.svg";
   static String wrong = "assets/images/svgs/wrong.svg";
   static String bottomDecor = "assets/images/svgs/bottom_decor.svg";
@@ -115,6 +116,7 @@ class Svgs {
   static String bigTick = "assets/images/svgs/bigTick.svg";
   static String fingerprint = "assets/images/svgs/fingerprint.svg";
   static String completed = "assets/images/svgs/completed.svg";
+  static String back = "assets/images/svgs/back_arrow.svg";
 
 
 }

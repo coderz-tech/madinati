@@ -12,7 +12,7 @@ class AppColors {
   static const Color secondaryDark = Color(0xFF060C1D);
   static const Color onSecondary = Color(0xFFFFFFFF);
   static const Color onPrimaryContainer = Color(0xFF57A2A7);
-  static const Color primaryContainer = Color(0xFFFFFFFF);
+  static const Color primaryContainer = Color(0xFFF7FAFB);
   static const Color orange = Color(0xFFF8971D);
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [Color(0xFF57A2A7), Color(0xFF88B388)], // blue to purple

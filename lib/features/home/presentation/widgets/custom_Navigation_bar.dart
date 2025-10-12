@@ -49,12 +49,14 @@ class CustomNavigationBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        currentIndex == 0 ? selectedIcons[0] : secondaryIcons[0],
+                        currentIndex == 0
+                            ? selectedIcons[0]
+                            : secondaryIcons[0],
                         colorFilter: currentIndex == 0
                             ? ColorFilter.mode(
-                          theme.colorScheme.primary,
-                          BlendMode.srcIn,
-                        )
+                                theme.colorScheme.primary,
+                                BlendMode.srcIn,
+                              )
                             : null,
                         width: responsiveWidth(context, 24),
                         height: responsiveHeight(context, 24),
@@ -88,12 +90,14 @@ class CustomNavigationBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        currentIndex == 1 ? selectedIcons[1] : secondaryIcons[1],
+                        currentIndex == 1
+                            ? selectedIcons[1]
+                            : secondaryIcons[1],
                         colorFilter: currentIndex == 1
                             ? ColorFilter.mode(
-                          theme.colorScheme.primary,
-                          BlendMode.srcIn,
-                        )
+                                theme.colorScheme.primary,
+                                BlendMode.srcIn,
+                              )
                             : null,
                         width: responsiveWidth(context, 24),
                         height: responsiveHeight(context, 24),
@@ -127,19 +131,21 @@ class CustomNavigationBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        currentIndex == 2 ? selectedIcons[2] : secondaryIcons[2],
+                        currentIndex == 2
+                            ? selectedIcons[2]
+                            : secondaryIcons[2],
                         colorFilter: currentIndex == 2
                             ? ColorFilter.mode(
-                          theme.colorScheme.primary,
-                          BlendMode.srcIn,
-                        )
+                                theme.colorScheme.primary,
+                                BlendMode.srcIn,
+                              )
                             : null,
                         width: responsiveWidth(context, 24),
                         height: responsiveHeight(context, 24),
                         fit: BoxFit.contain,
                       ),
                       Text(
-        AppLocalizations.of(context)!.notifications,
+                        AppLocalizations.of(context)!.notifications,
                         style: TextStyle(
                           color: currentIndex == 2
                               ? theme.colorScheme.primary
