@@ -130,22 +130,22 @@ class _LocationHardBlockState extends State<LocationHardBlock> with WidgetsBindi
                       const SizedBox(height: 12),
                       Text(
                         _checking
-                            ? context.read<LocaleCubit>().getLabelById(id: 1175)
+                            ? "context.read<LocaleCubit>().getLabelById(id: 1175)"
                             : !_serviceEnabled
-                            ? context.read<LocaleCubit>().getLabelById(id: 1176)
+                            ? "context.read<LocaleCubit>().getLabelById(id: 1176)"
                             : _deniedForever
-                            ? context.read<LocaleCubit>().getLabelById(id: 1177)
+                            ? "context.read<LocaleCubit>().getLabelById(id: 1177)"
                             : !_permissionOk
-                            ? context.read<LocaleCubit>().getLabelById(id: 1178)
-                            : context.read<LocaleCubit>().getLabelById(id: 1179),
+                            ? "context.read<LocaleCubit>().getLabelById(id: 1178)"
+                            : "context.read<LocaleCubit>().getLabelById(id: 1179)",
                         style: Theme.of(context).textTheme.titleLarge,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         _checking
-                            ? context.read<LocaleCubit>().getLabelById(id: 1180)
-                            : context.read<LocaleCubit>().getLabelById(id: 1181),
+                            ? "context.read<LocaleCubit>().getLabelById(id: 1180)"
+                            : "context.read<LocaleCubit>().getLabelById(id: 1181)",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16),
@@ -159,7 +159,7 @@ class _LocationHardBlockState extends State<LocationHardBlock> with WidgetsBindi
                                 // Opens OS Location settings. After returning, we re-check automatically.
                                 await Geolocator.openLocationSettings();
                               },
-                              child:  Text(context.read<LocaleCubit>().getLabelById(id: 1182)),
+                              child:  Text("context.read<LocaleCubit>().getLabelById(id: 1182)"),
                             ),
                           ),
 
@@ -171,7 +171,7 @@ class _LocationHardBlockState extends State<LocationHardBlock> with WidgetsBindi
                                 await Geolocator.requestPermission();
                                 await _refresh();
                               },
-                              child:  Text(context.read<LocaleCubit>().getLabelById(id: 1183)),
+                              child:  Text("context.read<LocaleCubit>().getLabelById(id: 1183)"),
                             ),
                           ),
 
@@ -182,14 +182,14 @@ class _LocationHardBlockState extends State<LocationHardBlock> with WidgetsBindi
                               onPressed: () async {
                                 await Geolocator.openAppSettings();
                               },
-                              child:  Text(context.read<LocaleCubit>().getLabelById(id: 1184)),
+                              child:  Text("context.read<LocaleCubit>().getLabelById(id: 1184)"),
                             ),
                           ),
 
                         const SizedBox(height: 8),
                         TextButton(
                           onPressed: _refresh,
-                          child:  Text(context.read<LocaleCubit>().getLabelById(id: 1185)),
+                          child:  Text("context.read<LocaleCubit>().getLabelById(id: 1185)"),
                         ),
                       ],
                     ],

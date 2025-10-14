@@ -1,0 +1,8 @@
+API_URL=http:/$()/192.168.1.78:5000/api/
+CLINT_ID=OutBalady.WasteOperationControl.Application
+REDIRECT_URL=madinati:/$()/callback
+APP_AUTH_REDIRECT_SCHEME=madinati
+APP_AUTH_REDIRECT_HOST=callback
+ISSUER=https:/$()/ssoappdev.momra.gov.sa
+DISCOVERY_URL=https:/$()/ssoappdev.momra.gov.sa/.well-known/openid-configuration
+SCOPES=openid,profile,offline_access,SmartWasteTracking.API

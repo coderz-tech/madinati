@@ -119,17 +119,39 @@ class _CustomTextFieldState extends State<CustomTextField> {
               onTap: widget.onTap,
               decoration: InputDecoration(
                 counterText: "",
-                prefixIcon:
-                    widget.prefixIcon != null
-                        ? Padding(
+                prefixIcon: widget.prefixIcon != null
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: responsiveWidth(context, 12),
+                          vertical: responsiveHeight(context, 12),
+                        ),
+                        child: SvgPicture.asset(
+                          widget.prefixIcon!,
+                          colorFilter: ColorFilter.mode(
+                            widget.prefixColor ??
+                                Theme.of(context).iconTheme.color!,
+                            BlendMode.srcIn,
+                          ),
+                          width: responsiveWidth(context, 24),
+                          height: responsiveHeight(context, 24),
+                          fit: BoxFit.contain,
+                        ),
+                      )
+                    : null,
+                suffixIcon: widget.suffixIcon != null || widget.isPassword
+                    ? GestureDetector(
+                        onTap: widget.isPassword ? _toggleObscureText : null,
+                        child: Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: responsiveWidth(context, 12),
                             vertical: responsiveHeight(context, 12),
                           ),
                           child: SvgPicture.asset(
-                            widget.prefixIcon!,
+                            widget.isPassword
+                                ? (_isObscured ? Svgs.show : Svgs.hide)
+                                : widget.suffixIcon!,
                             colorFilter: ColorFilter.mode(
-                              widget.prefixColor ??
+                              widget.suffixSvgColor ??
                                   Theme.of(context).iconTheme.color!,
                               BlendMode.srcIn,
                             ),
@@ -137,44 +159,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             height: responsiveHeight(context, 24),
                             fit: BoxFit.contain,
                           ),
-                        )
-                        : null,
-                suffixIcon:
-                    widget.suffixIcon != null || widget.isPassword
-                        ? GestureDetector(
-                          onTap: widget.isPassword ? _toggleObscureText : null,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: responsiveWidth(context, 12),
-                              vertical: responsiveHeight(context, 12),
-                            ),
-                            child: SvgPicture.asset(
-                              widget.isPassword
-                                  ? (_isObscured ? Svgs.show : Svgs.hide)
-                                  : widget.suffixIcon!,
-                              colorFilter: ColorFilter.mode(
-                                widget.suffixSvgColor ??
-                                    Theme.of(context).iconTheme.color!,
-                                BlendMode.srcIn,
-                              ),
-                              width: responsiveWidth(context, 24),
-                              height: responsiveHeight(context, 24),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        )
-                        : Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: responsiveWidth(context, 12),
-                            vertical: responsiveHeight(context, 12),
-                          ),
-                          child: SizedBox(
-                            width: responsiveWidth(context, 24),
-                            height: responsiveHeight(context, 24),
-                          ),
                         ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: responsiveWidth(context, 12),
+                          vertical: responsiveHeight(context, 12),
+                        ),
+                        child: SizedBox(
+                          width: responsiveWidth(context, 24),
+                          height: responsiveHeight(context, 24),
+                        ),
+                      ),
                 hintText: widget.hintText,
-                hintStyle: Theme.of(context).textTheme.labelSmall,
+                hintStyle: Theme.of(
+                  context,
+                ).textTheme.headlineLarge!.copyWith(fontSize: 16.sp),
                 contentPadding: EdgeInsetsDirectional.only(
                   start: responsiveWidth(context, 15),
                 ),

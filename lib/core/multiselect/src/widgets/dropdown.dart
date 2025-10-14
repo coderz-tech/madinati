@@ -114,8 +114,9 @@ class _Dropdown<T> extends StatelessWidget {
               if (items.isEmpty && searchEnabled)
                 Padding(
                   padding: const EdgeInsets.all(12),
+                  /// todo add text
                   child: Text(
-                    context.read<LocaleCubit>().getLabelById(id: 1002),
+                    "context.read<LocaleCubit>().getLabelById(id: 1002)",
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium,
                   ),

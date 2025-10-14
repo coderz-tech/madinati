@@ -46,8 +46,9 @@ class ErrorContainer extends StatelessWidget {
           SvgPicture.asset(Svgs.wrong),
           SizedBox(height: MediaQuery.of(context).size.height * 0.01663201663),
           Text(
+            /// todo text
             msg == null
-                ? context.read<LocaleCubit>().getLabelById(id: 1005)
+                ? "context.read<LocaleCubit>().getLabelById(id: 1005)"
                 : msg!,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium,
@@ -56,7 +57,7 @@ class ErrorContainer extends StatelessWidget {
           CustomButton(
             label:
                 buttonLabel == null
-                    ? context.read<LocaleCubit>().getLabelById(id: 1006)
+                    ? "context.read<LocaleCubit>().getLabelById(id: 1006)"
                     : buttonLabel!,
             onTap: onTap,
           ),

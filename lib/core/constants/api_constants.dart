@@ -1,46 +1,65 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiConstants {
-  static String baseUrl = dotenv.get("BASE_URL");
-  static String getAllDictionary = dotenv.get("GET_ALL_DICTIONARY");
-
-  // ################################################################################################
-  static String login = dotenv.get("LOGIN");
-  static String operationalPlanList = dotenv.get("OPERATION_PLAN_LIST");
-  static String operationalPlanDetails = dotenv.get("OPERATION_PLAN_DETAILS");
-  static String startTrip = dotenv.get("START_TRIP");
-  static String endTrip = dotenv.get("END_TRIP");
-  static String tripList = dotenv.get("TRIP_LIST");
-  static String getTripWithCriteria = dotenv.get("GET_TRIP_WITH_CRITERIA");
-  static String tripSearch = dotenv.get("TRIP_SEARCH");
-  static String driverTrips = dotenv.get("DRIVER_TRIP_DETAILS");
-
-  /// filter lookup
-  static String overnightPoint = dotenv.get("OVERNIGHT_POINT");
-  static String disposalPoint = dotenv.get("DISPOSAL_POINT");
-  static String crew = dotenv.get("CREW");
-  static String vehicle = dotenv.get("VEHICLE");
-  static String updateTrip = dotenv.get("UPDATE_TRIP");
-
-  /// OPM trip details
-  static String binManagementSearch = dotenv.get("BIN_MANAGEMENT_SEARCH");
-  static String binManagementDetails = dotenv.get("BIN_MANAGEMENT_DETAILS");
-
-  /// mohammed
-  // These are just a placeholder until the backend is ready
-  static String otp = dotenv.get("OTP");
-  static String otpVerify = dotenv.get("OTP_VERIFY");
-  static String resetPassword = dotenv.get("RESET_PASSWORD");
-  static String changePassword = dotenv.get("CNAHGE_PASSWORD");
-  static String validateToken = dotenv.get("VALIDATE_TOKEN");
-  static String refreshToken = dotenv.get("REFRESH_TOKEN");
-  static String tripStatusId = dotenv.get("TRIP_STATUS_ID");
-  static String binManualLift = dotenv.get("BIN_MANUAL_LIFT");
-  static String manualLiftingReasons = dotenv.get("MANUAL_LIFTING_REASONS");
-  static String getTripData = dotenv.get("GET_TRIP_DATA");
-  static String getUserProfile = dotenv.get("GET_USER_PROFILE");
-  static String binManagementLift = dotenv.get("BIN_MANAGEMENT_LIFT");
-
-  static String notification = dotenv.get("NOTIFICATION");
-  static String deleteNotification = dotenv.get("DELETE_NOTIFICATION");
+  static String getTripContractsBasket =
+  dotenv.get("GET_TRIP_CONTRACTS_BASKTET");
+  static String binLiftManualCompletion =
+  dotenv.get("BIN_LIFT_MANUAL_COMPLETION");
+  static String getManualCompletionReasonDDL =
+  dotenv.get("GET_MANUAL_COMPLETION_REASON_DDL");
+  static String getUserNotifications = dotenv.get("GET_USER_NOTIFICATIONS");
+  static String readNotification = dotenv.get("READ_NOTIFCATION");
+  static String getOperationPlans = dotenv.get("GET_OPERATION_PLANS");
+  static String getOperationPlanDetails =
+  dotenv.get("GET_OPERATION_PLAN_DETAILS");
+  static String getCurrentTrip = dotenv.get("GET_CURRENT_TRIP");
+  static String getNextTrip = dotenv.get("GET_NEXT_TRIP");
+  static String getObserverMembers = dotenv.get("GET_OBSERVER_MEMBERS");
+  static String getCrmReportComments = dotenv.get("GET_CRM_REPORT_COMMENTS");
+  static String insertCrmReportComment =
+  dotenv.get("INSERT_CRM_REPORT_COMMENT");
+  static String getCrmReports = dotenv.get("GET_CRM_REPORTS");
+  static String getCrmReportDetails = dotenv.get("GET_CRM_REPORT_DETAILS");
+  static String closeReport = dotenv.get("CLOSE_REPORT");
+  static String sendReport = dotenv.get("SEND_REPORT");
+  static String getTransporters = dotenv.get("GET_TRANSPORTERS");
+  static String getMunicipalityCrmSpecialClassifications =
+  dotenv.get("GET_MUNICIPALITY_CRM_SPECIAL_CLASSIFICATIONS");
+  static String insertCrmReport = dotenv.get("INSERT_CRM_REPORT");
+  static String getViolations = dotenv.get("GET_VIOLATIONS");
+  static String getViolationAttachments =
+  dotenv.get("GET_VIOLATION_ATTACHMENTS");
+  static String checkCommercialRegisterInfo =
+  dotenv.get("CHECK_COMMERCIAL_REGISTER_INFO");
+  static String checkVehicleInfo = dotenv.get("CHECK_VEHICLE_INFO");
+  static String getViolationTerms = dotenv.get("GET_VIOLATION_TERMS");
+  static String getViolationTypes = dotenv.get("GET_VIOLATION_TYPES");
+  static String createViolation = dotenv.get("CREATE_VIOLATION");
+  static String getManualCompleteRequestsByTripCode =
+  dotenv.get("GET_MANUAL_COMPLETE_REQUESTS_BY_TRIP_CODE");
+  static String getManualCompleteRequestDetails =
+  dotenv.get("GET_MANUAL_COMPLETE_REQUEST_DETAILS");
+  static String getOperationPlansBasket =
+  dotenv.get("GET_OPERATION_PLANS_BASKET");
+  static String getOperationPlanEmptyTrip =
+  dotenv.get("GET_OPERATION_PLAN_EMPTY_TRIP");
+  static String getTripOrders = dotenv.get("GET_TRIP_ORDERS");
+  static String getTripsForTransporterTripOrder =
+  dotenv.get("GET_TRIPS_FOR_TRANSPORTER_TRIP_ORDER");
+  static String addTripToTripOrder = dotenv.get("ADD_TRIP_TO_TRIP_ORDER");
+  static String getWasteContractsDDL = dotenv.get("GET_WASTE_CONTRACTS_DDL");
+  static String getBinsDetailsForTransporterCreateTripOrder =
+  dotenv.get("GET_BINS_DETAILS_FOR_TRANSPORTER_CREATE_TRIP_ORDER");
+  static String getListOfBinsAsNumbersByWasteContractCode =
+  dotenv.get("GET_LIST_OF_BINS_AS_NUMBERS_BY_WASTE_CONTRACT_CODE");
+  static String createTransporterTripOrder =
+  dotenv.get("CREATE_TRANSPORTER_TRIP_ORDER");
+  static String getTripsBasket = dotenv.get("GET_TRIPS_BASKET");
+  static String getTripDetails = dotenv.get("GET_TRIP_DETAILS");
+  static String getTripEdit = dotenv.get("GET_TRIP_EDIT");
+  static String updateHoldTrip = dotenv.get("UPDATE_HOLD_TRIP");
+  static String getToken = dotenv.get("GET_TOKEN");
+  static String getClosureReasons = dotenv.get("GET_CLOSURE_REASONS");
+  static String changeStatus = dotenv.get("CHANGE_STATUS");
+  static String violationByNumbers = dotenv.get("VIOLATION_BY_NUMBERS");
 }

@@ -1,16 +1,10 @@
 import 'dart:io';
+
 import '../../../../core/constants/app_constants.dart';
-import '../../../network/api_response.dart';
 import '../../../utils/secure_storage_helper.dart';
-import '../../domain/entities/dictionary_entity.dart';
 import '../../domain/repositories/locale_repository.dart';
-import '../data_source/locale_data_source.dart';
 
 class LocaleRepositoryImpl implements LocaleRepository {
-  LocaleDataSource localeDataSource;
-
-  LocaleRepositoryImpl({required this.localeDataSource});
-
   @override
   saveLocale({required String code}) async {
     await SecureStorageHelper().savePrefString(
@@ -25,10 +19,5 @@ class LocaleRepositoryImpl implements LocaleRepository {
       key: AppConstants.LANGUAGE_CODE,
       defaultValue: Platform.localeName.split('_').first,
     );
-  }
-
-  @override
-  Future<ApiResponse<DictionaryEntity>> getDictionary() async {
-    return await localeDataSource.getAllDictionary();
   }
 }

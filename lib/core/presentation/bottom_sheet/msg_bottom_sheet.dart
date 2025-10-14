@@ -59,8 +59,9 @@ class MsgBottomSheet extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03326403326),
           IntrinsicHeight(
+            /// todo text
             child: CustomButton(
-              label: context.read<LocaleCubit>().getLabelById(id: 1004),
+              label: "context.read<LocaleCubit>().getLabelById(id: 1004)",
               onTap: () {
                 Navigator.pop(context);
               },
