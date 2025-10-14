@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:madinati/core/constants/svgs.dart';
+import 'package:madinati/features/manual_lifting/presentation/presentation/manual_lifting_screen.dart';
+import 'package:madinati/features/trips/presentation/driver/trip_containers_list/widget/disposal_point_card.dart';
 import '../../../../../../core/utils/responsive.dart';
 import 'widget/collapse_containers.dart';
 
@@ -57,10 +59,30 @@ class TripDetailsScreen extends StatelessWidget {
           separatorBuilder: (context, index) {
             return SizedBox(height: responsiveHeight(context, 12));
           },
-          itemCount: 5,
+          itemCount: 5 + 1,
           itemBuilder: (context, index) {
-            return ContainerCard(onTap: () {});
+            if (index < 5) {
+              return ContainerCard(onTap: () {});
+            } else {
+              return DisposalPointCard();
+            }
           },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ManualLiftingScreen()),
+          );
+        },
+        shape: const CircleBorder(),
+        backgroundColor: theme.colorScheme.onSecondaryContainer,
+        child: SvgPicture.asset(
+          Svgs.map2,
+          width: 24,
+          height: 24,
+          fit: BoxFit.scaleDown, // يخليها بالنص
         ),
       ),
     );

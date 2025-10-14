@@ -57,7 +57,7 @@ class CustomButton extends StatelessWidget {
         width: buttonWidth ?? MediaQuery.of(context).size.width,
         // height: buttonHeights ?? responsiveHeight(context, 50),
         decoration: BoxDecoration(
-          gradient: AppColors.primaryGradient ,
+          gradient:color == null ? AppColors.primaryGradient :null ,
           color: color ?? AppColors.primary,
           borderRadius: BorderRadius.circular(borderRadius ?? 12),
           // border: Border.all(

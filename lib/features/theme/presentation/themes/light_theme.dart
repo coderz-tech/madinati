@@ -121,7 +121,16 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
+    // ############error Text#####################
+    // errorLarge: TextStyle(
+    //   color: AppColors.error,
+    //   fontSize: 18.sp,
+    //   fontFamily: 'Helvetica',
+    //   fontWeight: FontWeight.w800,
+    // ),
+
   ),
+
   colorScheme: ColorScheme(
     brightness: Brightness.light,
     inversePrimary: AppColors.inversePrimary,
@@ -139,6 +148,7 @@ final ThemeData lightTheme = ThemeData(
     onPrimaryContainer: AppColors.onPrimaryContainer,
     secondaryContainer: AppColors.secondaryContainer,
     onSecondaryContainer: AppColors.onSecondaryContainer,
+    inverseSurface: AppColors.correct,
     errorContainer: AppColors.errorContainer,
     onErrorContainer: AppColors.onErrorContainer,
     outline: AppColors.outline,
@@ -173,6 +183,7 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
+
   ),
 
   // --- BottomNav ------------------------------------------------------------

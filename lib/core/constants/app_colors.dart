@@ -36,8 +36,9 @@ class AppColors {
   static const Color darkBackground = Color(0xFF12172A);
   static const Color darkSurface = Color(0xFF060C1D);
   static const Color darkContainer = Color(0xFF242A3A);
+  static const Color correct = Color(0xFF88B388);
   static const Color error = Color(0xFFBA1A1A);
-  static const Color onError = Color(0xFFFFFFFF);
+  static const Color onError = Color(0xFFF44336);
   static const Color errorContainer = Color(0xFFFFDAD6);
   static const Color onErrorContainer = Color(0xFF410002);
 }

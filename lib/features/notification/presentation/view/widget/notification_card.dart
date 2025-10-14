@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:madinati/l10n/app_localizations.dart';
 
 import '../../../../../core/utils/responsive.dart';
 
@@ -10,15 +11,20 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: responsiveHeight(context, 122),
       width: responsiveWidth(context, 381),
       decoration: BoxDecoration(
         color: status
-            ? Theme.of(
+            ? Colors.white
+            : Theme.of(
                 context,
-              ).colorScheme.onPrimaryContainer.withValues(alpha: 0.05)
-            : Colors.white,
+              ).colorScheme.onPrimaryContainer.withValues(alpha: 0.35),
         borderRadius: BorderRadius.circular(12),
+        border: status
+            ? Border.all(
+                color: Theme.of(context).colorScheme.inverseSurface,
+                width: 0.5,
+              )
+            : null, //Border.all(color: )
       ),
       child: Padding(
         padding: EdgeInsetsGeometry.symmetric(
@@ -38,10 +44,15 @@ class NotificationCard extends StatelessWidget {
                   ).textTheme.labelLarge!.copyWith(fontSize: 12),
                 ),
                 Text(
-                  "مقروء",
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge!.copyWith(fontSize: 12),
+                  status
+                      ? AppLocalizations.of(context)!.read
+                      : AppLocalizations.of(context)!.unread,
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    fontSize: 12,
+                    color: status
+                        ? Theme.of(context).colorScheme.inverseSurface
+                        : Theme.of(context).colorScheme.error,
+                  ),
                 ),
               ],
             ),
@@ -51,17 +62,18 @@ class NotificationCard extends StatelessWidget {
                 context,
               ).textTheme.headlineLarge!.copyWith(fontSize: 14),
             ),
-            Expanded(
-              child: Text(
-                "وصف التنبيه (هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ)",
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineLarge!.copyWith(fontSize: 14),
-              ),
+            Text(
+              "وصف التنبيه (هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ)",
+              style: Theme.of(
+                context,
+              ).textTheme.headlineLarge!.copyWith(fontSize: 14),
             ),
-            Text("2024/10/12 1:12 PM",style: Theme.of(
-              context,
-            ).textTheme.labelLarge!.copyWith(fontSize: 12))
+            Text(
+              "2024/10/12 1:12 PM",
+              style: Theme.of(
+                context,
+              ).textTheme.labelLarge!.copyWith(fontSize: 12),
+            ),
           ],
         ),
       ),

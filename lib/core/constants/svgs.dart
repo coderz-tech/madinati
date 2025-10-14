@@ -32,6 +32,7 @@ class Svgs {
   static String locationMinus = "assets/images/svgs/location_minus.svg";
   static String locationTick = "assets/images/svgs/location_tick.svg";
   static String map = "assets/images/svgs/map.svg";
+  static String map2 = "assets/images/svgs/map2.svg";
   static String mirroringScreen = "assets/images/svgs/mirroring_screen.svg";
   static String moon = "assets/images/svgs/moon.svg";
   static String operationManagerClock =
