@@ -155,6 +155,7 @@ final ThemeData lightTheme = ThemeData(
     outlineVariant: AppColors.outlineVariant,
     shadow: AppColors.shadow,
     primaryFixed: AppColors.orange,
+    onSecondaryFixed: AppColors.unselectedGray,
   ),
 
   // --- InputDecoration ------------------------------------------------------

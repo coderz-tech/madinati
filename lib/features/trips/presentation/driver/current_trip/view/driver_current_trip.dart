@@ -9,8 +9,8 @@ import 'package:madinati/l10n/app_localizations.dart';
 
 import '../../trip_containers_list/trip_details_screen.dart';
 
-class CurrentTrip extends StatelessWidget {
-  const CurrentTrip({super.key});
+class DriverCurrentTrip extends StatelessWidget {
+  const DriverCurrentTrip({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'package:flutter_appauth/flutter_appauth.dart';
+
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/utils/secure_storage_helper.dart';
 
@@ -6,11 +8,10 @@ class EndSession {
 
   EndSession({required this.appAuth});
 
-  @override
-  Future<void> nullableCall({required Map<String, dynamic> body}) async {
+  Future<void> nullableCall({required String body}) async {
     await appAuth.endSession(
       EndSessionRequest(
-        idTokenHint: body.values,
+        idTokenHint: body,
         issuer: AppConstants.issuer,
         postLogoutRedirectUrl:
             "${AppConstants.appAuthRedirectScheme}://${AppConstants.appAuthRedirectHost}",

@@ -14,6 +14,7 @@ class AppColors {
   static const Color onPrimaryContainer = Color(0xFF57A2A7);
   static const Color primaryContainer = Color(0xFFF7FAFB);
   static const Color orange = Color(0xFFF8971D);
+  static const Color unselectedGray = Color(0xFFA5A5A8);
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [Color(0xFF57A2A7), Color(0xFF88B388)], // blue to purple
     begin: Alignment.topLeft,

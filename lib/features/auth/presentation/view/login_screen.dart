@@ -8,12 +8,16 @@ import 'package:madinati/core/locale/presentation/bottom_sheet/lang_bottom_sheet
 import 'package:madinati/core/presentation/widgets/custom_button.dart';
 import 'package:madinati/core/utils/responsive.dart';
 import 'package:madinati/features/home/presentation/screens/home_screen.dart';
-import 'package:madinati/features/trips/presentation/driver/current_trip/view/current_trip.dart';
+import 'package:madinati/features/trips/presentation/driver/current_trip/view/driver_current_trip.dart';
 import 'package:madinati/features/trips/presentation/driver/upcoming_trip/view/upcoming_trip_screen.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../home/domain/entity/bottom_nav_bar_entity.dart';
+import '../../../home/presentation/config/nav_config.dart';
+import '../../../home/presentation/cubits/nav_bar_cubit.dart';
 import '../../../operation_plans/presentation/driver/operation_plans/view/operation_plans_screen.dart';
 import '../../../tabs/presentation/cubits/tabs_cubit.dart';
+import '../../../trips/presentation/operation_manager/current_trip/view/opm_current_trip_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -104,24 +108,52 @@ class LoginScreen extends StatelessWidget {
               CustomButton(
                 label: "الدخول مع رقم الهوية/الإقامة",
                 onTap: () {
-                  List<Widget> screens = [
-                    const CurrentTrip(),
-                    const UpcomingTripScreen(),
-                    const OperationPlansScreen(),
-                  ];
-                  List<String> titles = [
-                    AppLocalizations.of(context)!.current_trip,
-                    AppLocalizations.of(context)!.next_trip,
-                    AppLocalizations.of(context)!.operational_plans,
-                  ];
-                  context.read<TabsCubit>().initial(
-                    screens: screens,
-                    titles: titles,
-                  );
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
+                  if(false){
+                    // List<Widget> screens = [
+                    //   const DriverCurrentTrip(),
+                    //   const UpcomingTripScreen(),
+                    //   const OperationPlansScreen(),
+                    // ];
+                    // List<String> titles = [
+                    //   AppLocalizations.of(context)!.current_trip,
+                    //   AppLocalizations.of(context)!.next_trip,
+                    //   AppLocalizations.of(context)!.operational_plans,
+                    // ];
+                    // context.read<TabsCubit>().initial(
+                    //   screens: screens,
+                    //   titles: titles,
+                    // );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                    // );
+                    final navCubit = NavBarCubit()..load(Actor.driver);
+                    print(navCubit.tabs);
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: navCubit,
+                          child: const HomeScreen(),
+                        ),
+                      ),
+                    );
+                  }else if(true){
+                    final navCubit = NavBarCubit()..load(Actor.monitorManager);
+                    print(navCubit.tabs);
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: navCubit,
+                          child: const HomeScreen(),
+                        ),
+                      ),
+                    );
+                  }
+
                 },
               ),
               SizedBox(height: responsiveHeight(context, 40)),

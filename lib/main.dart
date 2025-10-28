@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,14 @@ import 'core/locale/domain/entities/local_model.dart';
 import 'core/locale/domain/repositories/locale_repository.dart';
 import 'core/locale/presentation/cubit/locale_cubit.dart';
 import 'core/utils/location_permission.dart';
+import 'features/auth/data/datasources/auth_remote_data_source.dart';
+import 'features/auth/data/repositories/auth_repository_impl.dart';
+import 'features/auth/domain/repositories/auth_repository.dart';
+import 'features/auth/domain/usecases/authorize.dart';
+import 'features/auth/domain/usecases/end_session.dart';
+import 'features/auth/domain/usecases/get_access_token_from_refresh_token.dart';
+import 'features/auth/domain/usecases/get_user_info.dart';
+import 'features/auth/presentation/cubits/auth_cubit.dart';
 import 'features/home/presentation/cubits/nav_bar_cubit.dart';
 import 'features/home/presentation/screens/home_screen.dart';
 import 'features/splash/presentation/splash_screen.dart';
@@ -29,6 +38,7 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -39,6 +49,10 @@ class _MyAppState extends State<MyApp> {
   );
 
   final LocaleRepository localeRepository = LocaleRepositoryImpl();
+  final AuthRepository authRepository = AuthRepositoryImpl(
+    remoteDataSource: AuthRemoteDataSourceImpl(),
+  );
+  final FlutterAppAuth appAuth = const FlutterAppAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +60,16 @@ class _MyAppState extends State<MyApp> {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AuthCubit>(
+          create: (context) => AuthCubit(
+            getAccessTokenFromRefreshToken: GetAccessTokenFromRefreshToken(
+              appAuth: appAuth,
+            ),
+            endSession: EndSession(appAuth: appAuth),
+            authorize: Authorize(appAuth: appAuth),
+            getUserInfo: GetUserInfo(authRepository),
+          ),
+        ),
         BlocProvider<NavBarCubit>(
           create: (context) => NavBarCubit(),
           child: HomeScreen(),
