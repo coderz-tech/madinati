@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Madinati</string>
+	<string>${APP_AUTH_REDIRECT_SCHEME}</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,12 +22,44 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>${APP_AUTH_REDIRECT_SCHEME}</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>App needs access to Camera To take images </string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>App Need To access faceId for login</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App need access to your location to create incidents, open maps, and manually upload bins.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App need access to your location to create incidents, open maps, and manually upload bins.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App need access to your location to create incidents, open maps, and manually upload bins.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to Microphone.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to Photo Library.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

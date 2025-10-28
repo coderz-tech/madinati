@@ -29,13 +29,13 @@ final ThemeData lightTheme = ThemeData(
     // ############Black Text#####################
     headlineLarge: TextStyle(
       color: AppColors.blackText,
-      fontSize: 25.sp,
+      fontSize: 24.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     headlineMedium: TextStyle(
       color: AppColors.blackText,
-      fontSize: 20.sp,
+      fontSize: 16.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
@@ -45,21 +45,21 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
-    // ############Orange Text#####################
+    // ############green Text#####################
     displayLarge: TextStyle(
-      color: AppColors.orange,
-      fontSize: 25.sp,
+      color: AppColors.onPrimaryContainer,
+      fontSize: 24.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     displayMedium: TextStyle(
-      color: AppColors.orange,
-      fontSize: 20.sp,
+      color: AppColors.onPrimaryContainer,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     displaySmall: TextStyle(
-      color: AppColors.orange,
+      color: AppColors.onPrimaryContainer,
       fontSize: 14.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
@@ -67,13 +67,13 @@ final ThemeData lightTheme = ThemeData(
     // ############white Text#####################
     titleLarge: TextStyle(
       color: AppColors.whiteText,
-      fontSize: 25.sp,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w700,
     ),
     titleMedium: TextStyle(
       color: AppColors.whiteText,
-      fontSize: 20.sp,
+      fontSize: 18.sp,
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
@@ -121,10 +121,20 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
+    // ############error Text#####################
+    // errorLarge: TextStyle(
+    //   color: AppColors.error,
+    //   fontSize: 18.sp,
+    //   fontFamily: 'Helvetica',
+    //   fontWeight: FontWeight.w800,
+    // ),
+
   ),
+
   colorScheme: ColorScheme(
     brightness: Brightness.light,
     inversePrimary: AppColors.inversePrimary,
+    onPrimaryFixed: AppColors.onPrimaryFixed,
     primary: AppColors.primary,
     onPrimary: AppColors.onPrimary,
     secondary: AppColors.secondary,
@@ -138,12 +148,14 @@ final ThemeData lightTheme = ThemeData(
     onPrimaryContainer: AppColors.onPrimaryContainer,
     secondaryContainer: AppColors.secondaryContainer,
     onSecondaryContainer: AppColors.onSecondaryContainer,
+    inverseSurface: AppColors.correct,
     errorContainer: AppColors.errorContainer,
     onErrorContainer: AppColors.onErrorContainer,
     outline: AppColors.outline,
     outlineVariant: AppColors.outlineVariant,
     shadow: AppColors.shadow,
     primaryFixed: AppColors.orange,
+    onSecondaryFixed: AppColors.unselectedGray,
   ),
 
   // --- InputDecoration ------------------------------------------------------
@@ -172,6 +184,7 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Helvetica',
       fontWeight: FontWeight.w400,
     ),
+
   ),
 
   // --- BottomNav ------------------------------------------------------------

@@ -2,110 +2,56 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:http/http.dart' as http;
-import '../constants/api_constants.dart';
+
 import '../constants/app_constants.dart';
 import '../errors/server_exceptions.dart';
 import '../locale/presentation/cubit/locale_cubit.dart';
-import '../utils/io.dart';
 import '../utils/secure_storage_helper.dart';
 import 'api_response.dart';
 
 class ApiClient {
-  static Future<String> getImage<T>({
-    required String endpoint,
-    T Function(dynamic data)? fromJsonT,
-  }) async {
-    log('$endpoint');
-    try {
-      final response = await http.get(
-        Uri.parse('$endpoint'),
-        headers: {
-          "Authorization":
-              "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
-          "Accept-Language": await LocaleCubit.getLangSharedPrefForApi(),
-        },
-      );
-      IO.printBlue("status code :: ${response.statusCode} , body :: ${response.body} , headers :: ${response.headers} , request :: ${response.request} , bodyBytes :: ${response.bodyBytes}");
-      if (response.statusCode == 200) {
-        final String decodedResponse = utf8.decode(response.bodyBytes);
-        IO.printWarning(decodedResponse);
-        final data = json.decode(decodedResponse);
-        log(data.toString());
-        return jsonEncode(data);
-      } else if (response.statusCode == 400) {
-        final String decodedResponse = utf8.decode(response.bodyBytes);
-        final data = json.decode(decodedResponse);
-
-        log(data.toString());
-
-        return jsonEncode(data);
-      } else {
-        final String decodedResponse = utf8.decode(response.bodyBytes);
-        final data = json.decode(decodedResponse);
-        log(data.toString());
-        ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
-        // log(apiResponse.statusCode.toString());
-        throw ServerException(
-          // status: apiResponse.status,
-          showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
-        );
-      }
-    } catch (error) {
-      log(error.toString());
-
-      throw ServerException(
-        status: false,
-        showMessageToUser: false,
-        message: error.toString(),
-      );
-    }
-  }
-
   static Future<ApiResponse<T>> getData<T>({
     required String endpoint,
     T Function(dynamic data)? fromJsonT,
   }) async {
-    log('${ApiConstants.baseUrl}$endpoint');
+    print('${AppConstants.API_URL}$endpoint');
     try {
       final response = await http.get(
-        Uri.parse('${ApiConstants.baseUrl}$endpoint'),
+        Uri.parse('${AppConstants.API_URL}$endpoint'),
         headers: {
           "Authorization":
-              "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
+          "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
           "Accept-Language": await LocaleCubit.getLangSharedPrefForApi(),
         },
       );
-      IO.printBlue("status code :: ${response.statusCode} , body :: ${response.body}");
       if (response.statusCode == 200) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
-        IO.printWarning(decodedResponse);
-        final data = json.decode(decodedResponse);
-        log(data.toString());
-        return ApiResponse.fromJsonData(json: data, fromJsonT: fromJsonT);
+        Map<String, dynamic> jsonBody = json.decode(decodedResponse);
+
+        log(jsonBody.toString());
+        return ApiResponse.fromJsonData(json: jsonBody, fromJsonT: fromJsonT);
       } else if (response.statusCode == 400) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data.toString());
+        log(data);
 
         return ApiResponse.fromJsonError(json: data);
       } else {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
-        log(data.toString());
+        print(data);
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
-        // log(apiResponse.statusCode.toString());
+        print(apiResponse.statusCode.toString());
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
-      log(error.toString());
+      print(error.toString());
       throw ServerException(
         status: false,
         showMessageToUser: false,
@@ -119,14 +65,14 @@ class ApiClient {
     bool isStringList = false,
     T Function(dynamic data)? fromJsonT,
   }) async {
-    log('${ApiConstants.baseUrl}$endpoint');
+    print('${AppConstants.API_URL}$endpoint');
     try {
       final response = await http.get(
-        Uri.parse('${ApiConstants.baseUrl}$endpoint'),
+        Uri.parse('${AppConstants.API_URL}$endpoint'),
         headers: {
           "Accept-Language": await LocaleCubit.getLangSharedPrefForApi(),
           "Authorization":
-              "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
+          "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
         },
       );
       if (response.statusCode == 200) {
@@ -142,7 +88,7 @@ class ApiClient {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data.toString());
+        print(data);
 
         return ApiResponse.fromJsonError(json: data);
       } else {
@@ -151,14 +97,14 @@ class ApiClient {
 
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
-      log(error.toString());
+      print(error.toString());
       throw ServerException(
         status: false,
         showMessageToUser: false,
@@ -173,46 +119,46 @@ class ApiClient {
     T Function(dynamic data)? fromJsonT,
   }) async {
     try {
-      log('${ApiConstants.baseUrl}$endpoint');
-      log("body = ${jsonEncode(body)}");
+      print('${AppConstants.API_URL}$endpoint');
+      print("body = ${jsonEncode(body)}");
       final response = await http.post(
-        Uri.parse('${ApiConstants.baseUrl}$endpoint'),
+        Uri.parse('${AppConstants.API_URL}$endpoint'),
         headers: {
           "Accept-Language": await LocaleCubit.getLangSharedPrefForApi(),
           'Content-Type': 'application/json',
           "Authorization":
-              "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
+          "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
         },
         body: body != null ? jsonEncode(body) : null,
       );
-      log(response.body);
+      print(response.body);
       if (response.statusCode == 200) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
 
-        var data = json.decode(decodedResponse);
-        log(data.toString());
+        final data = json.decode(decodedResponse);
+        print(data);
         return ApiResponse.fromJsonData(json: data, fromJsonT: fromJsonT);
       } else if (response.statusCode == 400) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data);
+        print(data);
 
         return ApiResponse.fromJsonError(json: data);
       } else {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
-        // log(apiResponse.statusCode);
+        print(apiResponse.statusCode);
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
-      log(error.toString());
+      print(error.toString());
       throw ServerException(
         status: false,
         showMessageToUser: false,
@@ -227,17 +173,15 @@ class ApiClient {
     required List<http.MultipartFile> files,
     required T Function(dynamic data) fromJsonT,
   }) async {
-    log('${ApiConstants.baseUrl}$endpoint');
-    log("body = ${jsonEncode(fields)}");
+    print('${AppConstants.API_URL}$endpoint');
+    print("body = ${jsonEncode(fields)}");
     try {
       var request = http.MultipartRequest(
-        "POST",
-        Uri.parse("${ApiConstants.baseUrl}$endpoint"),
-      );
+          "POST", Uri.parse("${AppConstants.API_URL}$endpoint"));
       request.headers["Authorization"] =
-          "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}";
+      "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}";
       request.headers["Accept-Language"] =
-          await LocaleCubit.getLangSharedPrefForApi();
+      await LocaleCubit.getLangSharedPrefForApi();
 
       for (var field in fields.entries) {
         var key = field.key;
@@ -251,8 +195,7 @@ class ApiClient {
 
       final response = await http.Response.fromStream(await request.send());
 
-      log("response.body = ${response.body} ");
-      log("response.body = ${response.statusCode} ");
+      print("response.body = ${response.body} ");
 
       if (response.statusCode == 200) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
@@ -262,7 +205,8 @@ class ApiClient {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data.toString());
+        print(data);
+
         return ApiResponse.fromJsonError(json: data);
       } else {
         final String decodedResponse = utf8.decode(response.bodyBytes);
@@ -270,10 +214,10 @@ class ApiClient {
 
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
@@ -289,39 +233,42 @@ class ApiClient {
     required String endpoint,
     required Map<String, dynamic> body,
   }) async {
-    log('${ApiConstants.baseUrl}$endpoint');
+    log('${AppConstants.API_URL}$endpoint');
     log("body = ${jsonEncode(body)}");
     DateTime now = DateTime.now();
     DateTime oneMonthLater = DateTime(
-      now.year,
-      now.month + 1,
-      now.day,
-      now.hour,
-      now.minute,
-      now.second,
-    );
+        now.year, now.month + 1, now.day, now.hour, now.minute, now.second);
     int timestampOneMonthLater = oneMonthLater.millisecondsSinceEpoch ~/ 1000;
 
-    final jwt = JWT({
-      "Scope": ["WasteManagement.API"],
-      "Language": await LocaleCubit.getLangSharedPrefForApi(),
-      "exp": timestampOneMonthLater,
-      "iss": AppConstants.issuer,
-      "aud": AppConstants.issuer,
-    }, issuer: AppConstants.issuer);
+    final jwt = JWT(
+      {
+        "Scope": ["WasteManagement.API"],
+        "Language": await LocaleCubit.getLangSharedPrefForApi(),
+        "exp": timestampOneMonthLater,
+        "iss": AppConstants.issuer,
+        "aud": AppConstants.issuer
+      },
+      issuer: AppConstants.issuer,
+    );
 
     final token = jwt.sign(SecretKey(AppConstants.issuer));
     log("token = $token");
+    log("jwt.issuer = ${jwt.issuer}");
+    log("jwt.subject = ${jwt.subject}");
+    log("jwt.audience = ${jwt.audience}");
+    log("jwt.payload = ${jwt.payload}");
+    log("jwt.header = ${jwt.header}");
 
     try {
       final response = await http.post(
-        Uri.parse('${ApiConstants.baseUrl}$endpoint'),
+        Uri.parse('${AppConstants.API_URL}$endpoint'),
         headers: {
           'Content-Type': 'application/json',
           "Authorization": "Bearer $token",
         },
         body: jsonEncode(body),
       );
+      log("response.body = ${response.body}");
       if (response.statusCode == 200) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
@@ -331,7 +278,7 @@ class ApiClient {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data.toString());
+        print(data);
 
         return ApiResponse.fromJsonError(json: data);
       } else {
@@ -340,14 +287,14 @@ class ApiClient {
 
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
-      log(error.toString());
+      print(error.toString());
       throw ServerException(
         status: false,
         showMessageToUser: false,
@@ -362,21 +309,19 @@ class ApiClient {
     bool isStringList = false,
     required T Function(dynamic data) fromJsonT,
   }) async {
-    log('${ApiConstants.baseUrl}$endpoint');
-    log("body = ${jsonEncode(body)}");
+    print('${AppConstants.API_URL}$endpoint');
+    print("body = ${jsonEncode(body)}");
     try {
       final response = await http.post(
-        Uri.parse('${ApiConstants.baseUrl}$endpoint'),
+        Uri.parse('${AppConstants.API_URL}$endpoint'),
         headers: {
           'Content-Type': 'application/json',
           "Accept-Language": await LocaleCubit.getLangSharedPrefForApi(),
           "Authorization":
-              "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
+          "Bearer ${await SecureStorageHelper().getPrefString(key: AppConstants.ACCESS_TOKEN, defaultValue: "")}",
         },
         body: body != null ? jsonEncode(body) : null,
       );
-      IO.printBlue("status code :: ${response.statusCode}");
-      IO.printBlue("response body :: ${response.body}");
       if (response.statusCode == 200) {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
@@ -390,7 +335,7 @@ class ApiClient {
         final String decodedResponse = utf8.decode(response.bodyBytes);
         final data = json.decode(decodedResponse);
 
-        log(data.toString());
+        print(data);
 
         return ApiResponse.fromJsonError(json: data);
       } else {
@@ -399,14 +344,14 @@ class ApiClient {
 
         ApiResponse apiResponse = ApiResponse.fromJsonError(json: data);
         throw ServerException(
-          // status: apiResponse.status,
+          status: apiResponse.status,
           showMessageToUser: apiResponse.showMessageToUser,
-          // message: apiResponse.message,
-          // statusCode: apiResponse.statusCode,
+          message: apiResponse.message,
+          statusCode: apiResponse.statusCode,
         );
       }
     } catch (error) {
-      log(error.toString());
+      print(error.toString());
       throw ServerException(
         status: false,
         showMessageToUser: false,

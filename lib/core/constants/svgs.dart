@@ -1,4 +1,7 @@
 class Svgs {
+  static String dots_1 = "assets/images/svgs/dots1.svg";
+  static String dots_2 = "assets/images/svgs/dots2.svg";
+  static String dots_3 = "assets/images/svgs/dots3.svg";
   static String add = "assets/images/svgs/add.svg";
   static String addCircle = "assets/images/svgs/add_circle.svg";
   static String arrowCircleDown = "assets/images/svgs/arrow_circle_down.svg";
@@ -29,6 +32,7 @@ class Svgs {
   static String locationMinus = "assets/images/svgs/location_minus.svg";
   static String locationTick = "assets/images/svgs/location_tick.svg";
   static String map = "assets/images/svgs/map.svg";
+  static String map2 = "assets/images/svgs/map2.svg";
   static String mirroringScreen = "assets/images/svgs/mirroring_screen.svg";
   static String moon = "assets/images/svgs/moon.svg";
   static String operationManagerClock =
@@ -74,6 +78,7 @@ class Svgs {
       "assets/images/svgs/unselected_security_user.svg";
   static String vehicle = "assets/images/svgs/vehicle.svg";
   static String vehicle2 = "assets/images/svgs/vehicle_2.svg";
+  static String vehicle3 = "assets/images/svgs/vehicle_3.svg";
   static String warning = "assets/images/svgs/warning.svg";
   static String wrong = "assets/images/svgs/wrong.svg";
   static String bottomDecor = "assets/images/svgs/bottom_decor.svg";
@@ -93,6 +98,7 @@ class Svgs {
   static String filter = "assets/images/svgs/filter.svg";
   static String time = "assets/images/svgs/time.svg";
   static String calendar = "assets/images/svgs/calendar.svg";
+  static String calendar2 = "assets/images/svgs/calendar2.svg";
   static String navigation = "assets/images/svgs/navigation.svg";
   static String pinPoint = "assets/images/svgs/pinPoint.svg";
   static String arrow_down_circle = "assets/images/svgs/arrow_down_circle.svg";
@@ -111,6 +117,7 @@ class Svgs {
   static String bigTick = "assets/images/svgs/bigTick.svg";
   static String fingerprint = "assets/images/svgs/fingerprint.svg";
   static String completed = "assets/images/svgs/completed.svg";
+  static String back = "assets/images/svgs/back_arrow.svg";
 
 
 }
